@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡La Montaña Rusa de tu Energía!</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>⚡ ¡La Montaña Rusa de tu Energía! ⚡</h1>
+        <p>Descubre qué son las derivadas y las integrales usando la energía de tu día.</p>
+        <div class="quick-actions">
+            <button id="btnEscuela" class="btn-demo">🎒 Día de Escuela</button>
+            <button id="btnSabado" class="btn-demo">🎮 Sábado de Juegos</button>
+            <button id="btnExportar">💾 Exportar JSON</button>
+            <button id="btnImportar">📂 Importar JSON</button>
+            <input type="file" id="fileImport" accept=".json" class="hidden">
+        </div>
+    </header>
+
+    <main>
+        <!-- Panel Izquierdo: Formulario y Registro -->
+        <section class="panel-left">
+            <div class="card form-card">
+                <h2>Añadir Actividad</h2>
+                <form id="activityForm">
+                    <input type="hidden" id="actId">
+                    <label>¿Qué hiciste? <input type="text" id="actName" required placeholder="Ej. Jugar fútbol"></label>
+                    <label>Color: <input type="color" id="actColor" value="#ffeb3b"></label>
+                    <div class="time-group">
+                        <label>Inicio: <input type="time" id="actStart" required></label>
+                        <label>Fin: <input type="time" id="actEnd" required></label>
+                    </div>
+                    <label>¿Cómo afectó tu batería?</label>
+                    <div class="impact-group">
+                        <label><input type="radio" name="actImpact" value="recarga" checked> 🔋 Me da energía</label>
+                        <label><input type="radio" name="actImpact" value="cansa"> 🪫 Me cansa</label>
+                    </div>
+                    <button type="submit" class="btn-primary">Guardar Actividad</button>
+                </form>
+            </div>
+            
+            <div class="card list-card">
+                <h2>Diario de Energía</h2>
+                <div id="activityList"></div>
+            </div>
+        </section>
+
+        <!-- Panel Derecho: Laboratorio y Gráfica -->
+        <section class="panel-right">
+            <div class="lab-controls card">
+                <div class="tabs">
+                    <button id="tabDerivada" class="active">Derivada (Velocidad)</button>
+                    <button id="tabIntegral">Integral (Reserva)</button>
+                    <button id="tabEjercicios" class="ejercicios-btn">📝 Ejercicios f(x)</button>
+                </div>
+
+                <!-- Controles Derivada -->
+                <div id="panelDerivada" class="control-panel">
+                    <p>Mueve el reloj para ver a qué velocidad cambia tu energía.</p>
+                    <input type="range" id="timeSlider" min="0" max="1439" value="720">
+                    <div class="time-display">Hora: <span id="lblTime">12:00</span></div>
+                    <div class="speedometer card" id="speedometer">
+                        <h3 id="speedTitle">Velocímetro</h3>
+                        <p id="speedText">...</p>
+                    </div>
+                    <div class="jump-btns">
+                        <button id="btnPico">Ir al Pico (Máximo)</button>
+                        <button id="btnValle">Ir al Valle (Mínimo)</button>
+                    </div>
+                </div>
+
+                <!-- Controles Integral -->
+                <div id="panelIntegral" class="control-panel hidden">
+                    <p>Mide la cantidad total de energía que acumulaste (Área).</p>
+                    <div class="range-group">
+                        <label>De: <input type="time" id="intStart" value="08:00"></label>
+                        <label>A: <input type="time" id="intEnd" value="18:00"></label>
+                    </div>
+                    <label>Precisión (Número de barras):</label>
+                    <input type="range" id="barsSlider" min="4" max="96" value="12" step="1">
+                    <div class="integral-stats card">
+                        <h3 id="intAreaText">Reserva total: 0 puntos</h3>
+                        <p id="intPrecisionText">Precisión: 64% - Faltan huecos.</p>
+                    </div>
+                </div>
+
+                <!-- Controles Ejercicios -->
+                <div id="panelEjercicios" class="control-panel hidden">
+                    <p>¡Genera un problema matemático basado en tu propio día!</p>
+                    <button id="btnGenerarEjercicio" class="btn-primary">Generar Reto Matemático</button>
+                    
+                    <div class="ejercicio-card card hidden" id="ejercicioCard">
+                        <h3 id="ejercicioTitulo">Tu Misión:</h3>
+                        <p id="ejercicioContexto"></p>
+                        <div class="formula-box">
+                            f(x) = <span id="ejercicioFuncion"></span>
+                        </div>
+                        <p><strong>x</strong> = Tiempo en horas (ej. 14.5 son las 14:30)</p>
+                        <p><strong>f(x)</strong> = Tu nivel de energía</p>
+                        
+                        <div class="ejercicio-preguntas">
+                            <h4>Preguntas para resolver en tu cuaderno:</h4>
+                            <ul>
+                                <li id="preguntaDerivada">Derivada: ...</li>
+                                <li id="preguntaIntegral">Integral: ...</li>
+                            </ul>
+                        </div>
+                        <button id="btnMostrarRespuestas" class="btn-demo">Mostrar Respuestas Secretas</button>
+                        <div id="respuestasSecretas" class="respuestas-secretas hidden">
+                            <p id="respuestaDerivada"></p>
+                            <p id="respuestaIntegral"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="canvas-container card">
+                <canvas id="energyCanvas"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <script src="mathEngine.js"></script>
+    <script src="dbService.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

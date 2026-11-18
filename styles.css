@@ -1,0 +1,113 @@
+:root {
+    --bg-color: #f0f8ff;
+    --card-bg: #ffffff;
+    --text-main: #333333;
+    --primary: #4CAF50;
+    --secondary: #FF9800;
+    --danger: #F44336;
+    --purple: #9C27B0;
+    --shadow: 0 8px 16px rgba(0,0,0,0.1);
+    --radius: 16px;
+    --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font); }
+body { background: var(--bg-color); color: var(--text-main); padding: 20px; }
+header { text-align: center; margin-bottom: 20px; }
+header h1 { font-size: 2.5rem; color: var(--secondary); text-shadow: 2px 2px 0px #ffe0b2; }
+
+.quick-actions { margin-top: 15px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+button { padding: 10px 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: transform 0.2s, background-color 0.2s; }
+button:hover { transform: scale(1.03); }
+.btn-demo { background: #2196F3; color: white; }
+#btnExportar, #btnImportar { background: var(--purple); color: white; }
+
+main { display: flex; gap: 20px; max-width: 1400px; margin: 0 auto; flex-wrap: wrap; }
+.panel-left { flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 20px; }
+.panel-right { flex: 2.5; min-width: 600px; display: flex; flex-direction: column; gap: 20px; }
+
+.card { background: var(--card-bg); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); border: 3px solid #e0f7fa; }
+h2 { margin-bottom: 15px; color: var(--primary); }
+
+form label { display: block; margin-bottom: 10px; font-weight: bold; }
+input[type="text"], input[type="time"] { width: 100%; padding: 8px; margin-top: 5px; border: 2px solid #ccc; border-radius: 8px; }
+input[type="color"] { width: 50px; height: 35px; padding: 0; cursor: pointer; vertical-align: middle; margin-left: 8px; border: none; background: transparent; }
+
+.time-group, .impact-group, .range-group { display: flex; gap: 10px; margin-bottom: 15px; }
+.time-group label, .range-group label { flex: 1; }
+.impact-group label { flex: 1; background: #f5f5f5; padding: 8px 12px; border-radius: 8px; cursor: pointer; border: 2px solid transparent; }
+.impact-group label:has(input:checked) { border-color: var(--primary); background: #e8f5e9; }
+
+.btn-primary { background: var(--primary); color: white; width: 100%; padding: 12px; font-size: 1.1rem; }
+
+.activity-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-radius: 8px; margin-bottom: 10px; background: #fafafa; border-left: 8px solid #ccc; }
+.activity-actions button { margin-left: 5px; padding: 5px 10px; background: #ffebee; }
+
+/* Pestañas y Paneles del Laboratorio */
+.tabs { display: flex; gap: 6px; }
+.tabs button { flex: 1; padding: 14px 10px; font-size: 1.05rem; background: #e0e0e0; border-radius: var(--radius) var(--radius) 0 0; }
+.tabs button.active { background: var(--secondary); color: white; }
+.tabs button.ejercicios-btn.active { background: var(--purple); color: white; }
+
+.control-panel { background: white; padding: 20px; border-radius: 0 0 var(--radius) var(--radius); border-top: 3px solid var(--secondary); }
+.hidden { display: none !important; }
+
+input[type="range"] { width: 100%; margin: 15px 0; cursor: pointer; }
+.time-display { font-size: 1.2rem; font-weight: bold; text-align: center; color: #555; }
+.time-display span { color: var(--secondary); font-size: 1.4rem; }
+
+.speedometer, .integral-stats { text-align: center; margin-top: 15px; padding: 15px; border-width: 4px; }
+.speed-pos { border-color: var(--primary); background: #e8f5e9; }
+.speed-neg { border-color: var(--danger); background: #ffebee; }
+.speed-zero { border-color: var(--secondary); background: #fff8e1; }
+
+.jump-btns { display: flex; gap: 10px; margin-top: 15px; }
+.jump-btns button { flex: 1; background: #eceff1; color: var(--text-main); }
+.jump-btns button:hover { background: #cfd8dc; }
+
+/* Módulo de Ejercicios f(x) */
+#btnGenerarEjercicio { margin-top: 12px; margin-bottom: 15px; background: var(--purple); }
+.ejercicio-card { background: #fff3e0; border-color: #ff9800; margin-top: 10px; }
+#ejercicioTitulo { color: #e65100; margin-bottom: 8px; }
+#ejercicioContexto { font-size: 1.05rem; margin-bottom: 12px; line-height: 1.4; }
+
+.formula-box {
+    background: #222;
+    color: #00e676;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.35rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.ejercicio-preguntas { margin-top: 15px; padding-top: 15px; border-top: 2px dashed #ffb74d; }
+.ejercicio-preguntas h4 { color: #e65100; margin-bottom: 8px; }
+.ejercicio-preguntas ul { margin-left: 20px; line-height: 1.5; }
+.ejercicio-preguntas li { margin-bottom: 8px; }
+
+#btnMostrarRespuestas { margin-top: 15px; width: 100%; }
+.respuestas-secretas {
+    margin-top: 12px;
+    padding: 12px 15px;
+    background: #e8f5e9;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    line-height: 1.5;
+}
+.respuestas-secretas p + p { margin-top: 8px; }
+
+/* Lienzo */
+.canvas-container { position: relative; width: 100%; padding-top: 50%; /* 2:1 Aspect ratio */ }
+canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: var(--radius); background: #222; }
+
+@media (max-width: 900px) {
+    main { flex-direction: column; }
+    .panel-right { min-width: 100%; }
+    .tabs { flex-direction: column; }
+    .tabs button { border-radius: 8px; }
+    .canvas-container { padding-top: 75%; }
+}
